@@ -1,8 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using WeatherMoscow.DataHelpers;
+using WeatherMoscow.Models;
 
 namespace WeatherMoscow.Controllers
 {
@@ -13,18 +19,41 @@ namespace WeatherMoscow.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult WeatherList()
         {
-            ViewBag.Message = "Your application description page.";
+            using (WeatherContext db = new WeatherContext())
+            {
+                IEnumerable<Weather> weather = db.Weathers.ToList();
+                return View(weather);
+            }
+        }
 
+        [HttpGet]
+        public ActionResult Upload()
+        {
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public void Upload(IEnumerable<HttpPostedFileBase> uploads)
         {
-            ViewBag.Message = "Your contact page.";
+            List<Weather> weatherObjects = new List<Weather>();
+            foreach (var file in uploads)
+            {
+                if (file != null)
+                {
+                    ExcelParser parser = new ExcelParser();
+                    Stream fileStream = file.InputStream;
+                    weatherObjects.AddRange(parser.ParseFile(fileStream));
+                }
+            }
 
-            return View();
+            using (WeatherContext db = new WeatherContext())
+            {
+                db.Weathers.AddRange(weatherObjects);
+                db.SaveChanges();
+                RedirectToAction("Upload");
+            }
         }
     }
 }
