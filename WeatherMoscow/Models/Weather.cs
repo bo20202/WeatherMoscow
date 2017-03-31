@@ -34,6 +34,7 @@ namespace WeatherMoscow.Models
         public int CloudBase { get; set; }
         public int HorizontalVisibility { get; set; }
 
+        public string WeatherConditions { get; set; }
 
     }
 }
