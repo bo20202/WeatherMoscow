@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WeatherMoscow.Models.Weather>
+
+@{
+    ViewBag.Title = "Данные о погоде";
+}
+
+<h3>Данные о погоде</h3>
+
+@if (Model != null)
+{
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AirTemp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Moisture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DewPoint)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pressure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WindDir)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WindSpeed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cloudness)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CloudBase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HorizontalVisibility)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WeatherConditions)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AirTemp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Moisture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DewPoint)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pressure)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WindDir)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WindSpeed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cloudness)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CloudBase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HorizontalVisibility)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeatherConditions)
+            </td>
+        </tr>
+    }
+</table>
