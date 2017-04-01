@@ -1,4 +1,5 @@
-﻿@model IEnumerable<WeatherMoscow.Models.Weather>
+﻿@model WeatherMoscow.Models.ViewModels.WeatherViewModel
+@using WeatherMoscow.Helpers
 
 @{
     ViewBag.Title = "Данные о погоде";
@@ -6,50 +7,48 @@
 
 <h3>Данные о погоде</h3>
 
-@if (Model != null)
-{
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.Weathers.FirstOrDefault().Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Time)
+            @Html.DisplayNameFor(model => model.Weathers.FirstOrDefault().Time)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AirTemp)
+            @Html.DisplayNameFor(model => model.Weathers.FirstOrDefault().AirTemp)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Moisture)
+            @Html.DisplayNameFor(model => model.Weathers.FirstOrDefault().Moisture)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DewPoint)
+            @Html.DisplayNameFor(model => model.Weathers.FirstOrDefault().DewPoint)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pressure)
+            @Html.DisplayNameFor(model => model.Weathers.FirstOrDefault().Pressure)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WindDir)
+            @Html.DisplayNameFor(model => model.Weathers.FirstOrDefault().WindDir)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WindSpeed)
+            @Html.DisplayNameFor(model => model.Weathers.FirstOrDefault().WindSpeed)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cloudness)
+            @Html.DisplayNameFor(model => model.Weathers.FirstOrDefault().Cloudness)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CloudBase)
+            @Html.DisplayNameFor(model => model.Weathers.FirstOrDefault().CloudBase)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HorizontalVisibility)
+            @Html.DisplayNameFor(model => model.Weathers.FirstOrDefault().HorizontalVisibility)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WeatherConditions)
+            @Html.DisplayNameFor(model => model.Weathers.FirstOrDefault().WeatherConditions)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Weathers)
     {
         <tr>
             <td>
@@ -91,3 +90,7 @@
         </tr>
     }
 </table>
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("WeatherList", new { page = x }));
+</div>
