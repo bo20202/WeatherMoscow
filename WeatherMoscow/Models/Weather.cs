@@ -20,26 +20,30 @@ namespace WeatherMoscow.Models
         public int Id { get; set; }
         
         [Display(Name = "Дата")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
-        [Display(Name = "Время")]
+
+        [DisplayFormat(DataFormatString = "{0:t}")]
+        [Display(Name = "Время московское")]
         public TimeSpan Time { get; set; }
 
         [Display(Name = "Температура")]
+        
         public double? AirTemp { get; set; }
-        [Display(Name = "Влажность")]
+        [Display(Name = "Отн. влажность, %")]
         public double? Moisture { get; set; }
         [Display(Name = "Точка росы")]
         public double? DewPoint{ get; set; }
         
-        [Display(Name = "Давление")]
+        [Display(Name = "Давление, мм ртутного столба")]
         public int? Pressure { get; set; }
 
         [Display(Name = "Направление ветра")]
         public string WindDir { get; set; }
-        [Display(Name = "Скорость ветра")]
+        [Display(Name = "Скорость ветра, м/c")]
         public int? WindSpeed { get; set; }
 
-        [Display(Name = "Облачность")]
+        [Display(Name = "Облачность, %")]
         public int? Cloudness { get; set; }
         [Display(Name = "Нижняя граница облачности")]
         public int? CloudBase { get; set; }
