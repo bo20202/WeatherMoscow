@@ -7,6 +7,31 @@
 
 <h3>Данные о погоде</h3>
 
+@using(Html.BeginForm("WeatherList", "Weather", FormMethod.Get))
+{
+    <label for="year">Введите год</label>
+    <input type="text" name="year" />
+
+    <label for="month">Выберите месяц</label>
+    <select name="month">
+        <option selected value="">Выберите месяц</option>
+        <option value="01">Январь</option>
+        <option value="02">Февраль</option>
+        <option value="03">Март</option>
+        <option value="04">Апрель</option>
+        <option value="05">Май</option>
+        <option value="06">Июнь</option>
+        <option value="07">Июль</option>
+        <option value="08">Август</option>
+        <option value="09">Сентябрь</option>
+        <option value="10">Октябрь</option>
+        <option value="11">Ноябрь</option>
+        <option value="12">Декабрь</option>
+    </select>
+
+    <input type="submit" />
+}
+
 <table class="table">
     <tr>
         <th>
@@ -92,5 +117,5 @@
 </table>
 <br />
 <div class="btn-group">
-    @Html.PageLinks(Model.PageInfo, x => Url.Action("WeatherList", new { page = x }));
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("WeatherList", new { page = x, year = ViewBag.year, month = ViewBag.month }));
 </div>
